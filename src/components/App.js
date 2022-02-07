@@ -12,23 +12,27 @@ console.log({ CATEGORIES, TASKS });
 
 function App() {
 
-  const [isSelected, setIsSelected] = useState(false)
-  console.log(isSelected)
+  const [selectedCategory, setSelectedCategory] = useState("All")
+  const [tasks, setTasks] = useState(TASKS)
+ 
 
-  function handleSelected(e){
-    console.log(isSelected)
-    setIsSelected(!isSelected)
-
+  function handleSelected(category){
+    setSelectedCategory(category)
+    console.log(category)
   }
 
+  function handleNewTask(task){
+    const newTaskArray = [...tasks, task]
+    setTasks(newTaskArray)
+  }
 
 
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES} onSelect={handleSelected} isSelected={isSelected} />
-      <NewTaskForm />
-      <TaskList tasks={TASKS} />
+      <CategoryFilter categories={CATEGORIES} onSelect={handleSelected} selectedCategory={selectedCategory} />
+      <NewTaskForm categories={CATEGORIES} tasks={TASKS} onTaskFormSubmit={handleNewTask} />
+      <TaskList tasks={TASKS} selectedCategory={selectedCategory} onSetTasks={setTasks} />
     </div>
   );
 }
