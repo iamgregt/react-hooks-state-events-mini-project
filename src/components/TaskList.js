@@ -3,15 +3,15 @@ import Task from "./Task";
 
 function TaskList({tasks}) {
   
+
   return(
-  tasks.map((task) => {
-    console.log(task.text)
-     return <div className="tasks">
-        <Task key={task.text}  />
-      </div>
-    
-  })
+   <div className="tasks">
+  {tasks && tasks.map((task) => { 
+    return <Task key={task.text} category={task.category} text={task.text} /> 
+})}
+ </div>
   )
+  
 }
 
 export default TaskList;
