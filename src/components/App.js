@@ -22,7 +22,16 @@ function App() {
   }
 
   function handleNewTask(task){
-    const newTaskArray = [...tasks, task]
+    let newTaskArray = [...tasks, task]
+    setTasks(newTaskArray)
+  }
+
+  function handleRemovedTask(deletedTask){
+    console.log(deletedTask)
+    console.log(tasks)
+    let newTaskArray = tasks.filter((task) => {
+      return task.text !== deletedTask
+    }) 
     setTasks(newTaskArray)
   }
 
@@ -32,7 +41,7 @@ function App() {
       <h2>My tasks</h2>
       <CategoryFilter categories={CATEGORIES} onSelect={handleSelected} selectedCategory={selectedCategory} />
       <NewTaskForm categories={CATEGORIES} tasks={TASKS} onTaskFormSubmit={handleNewTask} />
-      <TaskList tasks={TASKS} selectedCategory={selectedCategory} onSetTasks={setTasks} />
+      <TaskList tasks={tasks} selectedCategory={selectedCategory} onSetTasks={setTasks} onDeleteTask={handleRemovedTask} />
     </div>
   );
 }

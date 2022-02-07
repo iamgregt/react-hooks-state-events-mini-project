@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 
-function NewTaskForm({categories, tasks, onTaskFormSubmit}) {
+function NewTaskForm({categories, onTaskFormSubmit}) {
   const formCategories = categories.filter((cat) => cat !== "All")
   const [details, setDetails] = useState("")
-  const [taskCategory, setTaskCategory] = useState("")
+  const [taskCategory, setTaskCategory] = useState("Code")
 
 
   function handleNewDetail(e){
@@ -21,7 +21,7 @@ function NewTaskForm({categories, tasks, onTaskFormSubmit}) {
     e.preventDefault()
 
     const newTask = {
-      details:details,
+      text:details,
       category:taskCategory
     }
     console.log(newTask)

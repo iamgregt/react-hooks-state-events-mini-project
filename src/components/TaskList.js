@@ -1,7 +1,7 @@
 import React from "react";
 import Task from "./Task";
 
-function TaskList({tasks, selectedCategory, onSetTasks}) {
+function TaskList({tasks, selectedCategory, onDeleteTask}) {
   
   
   // function handleNewTask(newItem){
@@ -9,6 +9,11 @@ function TaskList({tasks, selectedCategory, onSetTasks}) {
   //   onSetTasks(newTaskArray)
   // }
   
+  function handleDelete(item){
+    console.log(item)
+    onDeleteTask(item)
+
+  }
   
   const tasksToDisplay = tasks.filter((task) => {
     if(selectedCategory === "All") {
@@ -19,9 +24,10 @@ function TaskList({tasks, selectedCategory, onSetTasks}) {
   }) 
 
   return(
+    
    <div className="tasks">
   {tasksToDisplay.map((task) => { 
-    return <Task key={task.text} category={task.category} text={task.text} /> 
+    return <Task key={task.text} category={task.category} text={task.text} onDelete={handleDelete}  /> 
 })}
  </div>
   )
