@@ -18,7 +18,6 @@ function App() {
   function handleSelected(e){
     console.log(isSelected)
     setIsSelected(!isSelected)
-    e.target.className = "selected"
 
   }
 
@@ -27,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <h2>My tasks</h2>
-      <CategoryFilter categories={CATEGORIES} onSelect={handleSelected} />
+      <CategoryFilter categories={CATEGORIES} onSelect={handleSelected} isSelected={isSelected} />
       <NewTaskForm />
       <TaskList tasks={TASKS} />
     </div>
